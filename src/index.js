@@ -1,33 +1,45 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import App from './App'
-import reportWebVitals from './reportWebVitals'
-
-import { createStore, applyMiddleware } from 'redux';
-import { Provider } from 'react-redux'
-import createSagaMiddleware from 'redux-saga'
+import reportWebVitals from './reportWebVitals';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
-import orange from '@material-ui/core/colors/orange';
+
+import { compose, createStore, applyMiddleware } from 'redux';
+import { Provider } from 'react-redux'
+import { createLogger } from 'redux-logger'
+import createSagaMiddleware from 'redux-saga'
 import rootSaga from './sagas/rootSaga'
 
 import reducer from './reducer'
 
 const sagaMiddleware = createSagaMiddleware()
-const store = createStore(reducer, applyMiddleware(sagaMiddleware))
+const logger = createLogger({
+  diff: true,
+  collapsed: true,
+});
+const store = createStore(
+  reducer,
+  compose(applyMiddleware(sagaMiddleware, logger)),
+);
 sagaMiddleware.run(rootSaga)
 
 const theme = createMuiTheme({
   palette: {
-    primary: orange,
+    primary: {
+      light: '#81c784',
+      main: '#4caf50',
+      dark: '#388e3c',
+      contrastText: '#fff',
+    },
   },
 });
 
 ReactDOM.render(
-  <ThemeProvider theme={theme}>
-    <Provider store={store}>
+  <Provider store={store}>
+    <ThemeProvider theme={theme}>
       <App />
-    </Provider>
-  </ThemeProvider>,
+    </ThemeProvider>
+  </Provider>,
   document.getElementById('root')
 )
 

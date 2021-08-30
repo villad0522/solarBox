@@ -8,14 +8,22 @@
 //takeLatest                        処理をキャンセルし、新しい処理を行う
 //axios.get(..)                     する関数とかをコール
 
-import { takeEvery } from 'redux-saga/effects';
+import { takeEvery, fork } from 'redux-saga/effects';
 
 import actions from '../actions';
 import convertGifFunc from './convertGif';
+import sigfoxLoop from './sigfox';
+import { reciveLoop } from './serialCommand';
+import { im920ConnectFn, im920DisconnectFn } from './im920';
 
 export default function* rootSaga() {
     yield console.log("redux メイン関数　スタート");
     //
+    yield fork(reciveLoop);
+    yield fork(sigfoxLoop);
+    yield takeEvery(actions.im920.wired.connect, im920ConnectFn);
+    yield takeEvery(actions.im920.wired.disconnect, im920DisconnectFn);
+    yield takeEvery(actions.im920.wired.timeout, im920DisconnectFn);
     yield takeEvery(actions.convertGif, convertGifFunc);
     //
     yield console.log("redux メイン関数　終了");

@@ -1,4 +1,5 @@
 import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
@@ -8,8 +9,8 @@ import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 import Typography from '@material-ui/core/Typography';
 
-import FlashImages from '../containers/FlashImages';
-import FlashGif from '../containers/FlashGif';
+import FlashImages from '../../containers/FlashImages';
+import FlashGif from '../../containers/FlashGif';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -25,6 +26,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function CustomizedDialogs({ children, bitArray, gifFileName, setBitArray, clearBitArray, testFlash, testMode, }) {
+    const dispatch = useDispatch();
     const classes = useStyles();
     const [open, setOpen] = React.useState(false);
 

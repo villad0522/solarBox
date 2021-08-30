@@ -1,58 +1,32 @@
-import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Box from '@material-ui/core/Box';
-import Container from '@material-ui/core/Container';
+import React, { useState } from 'react';
+import AppBar from '@material-ui/core/AppBar';
+import Tabs from '@material-ui/core/Tabs';
+import Tab from '@material-ui/core/Tab';
 
-import TimeSchedule from './containers/TimeSchedule';
-import FlashDialog from './containers/FlashDialog';
+import Diagram from './components/Diagram';
+import Table from './components/Table';
 
-const useStyles = makeStyles((theme) => ({
-  container: {
-    textAlign: 'center',
-  },
-  buttonWrapper: {
-    position: 'sticky',
-    bottom: 0,
-    background: '#fff',
-    zIndex: 3,
-  },
-}));
 
 const App = () => {
-  const classes = useStyles();
-
+  const [value, setValue] = useState(0);
   return (
-    <Container className={classes.container}>
-      <TimeSchedule />
-      <Box p={2} />
-      {/* <FlashDialog testMode="combo">
-        combo test
-      </FlashDialog>
-      <FlashDialog testMode="rotate">
-        rotate test
-      </FlashDialog>
-      <FlashDialog testMode="lastDelete">
-        last delete test
-      </FlashDialog>
-      <FlashDialog testMode="escape">
-        escape test
-      </FlashDialog>
-      <FlashDialog testMode="JoinHalfByte">
-        join half byte test
-      </FlashDialog>
-      <FlashDialog testMode="singleCheckSum">
-        single checksum test
-      </FlashDialog>
-      <FlashDialog testMode="randomCheckSum">
-        random checksum test
-      </FlashDialog>
-      <Box p={2} /> */}
-      <Box p={2} className={classes.buttonWrapper}>
-        <FlashDialog>
-          書き込み
-        </FlashDialog>
-      </Box>
-    </Container >
+    <>
+      <AppBar position="static">
+        <Tabs
+          value={value}
+          onChange={(event, newValue) => setValue(newValue)}
+        >
+          <Tab label="接続" />
+          <Tab label="データ集計" />
+        </Tabs>
+      </AppBar>
+      {
+        (value === 0) ? <Diagram /> : null
+      }
+      {
+        (value === 1) ? <Table /> : null
+      }
+    </>
   );
 }
 export default App
