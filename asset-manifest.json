@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.js": "/solarBox/static/js/main.0a8a6777.chunk.js",
-    "main.js.map": "/solarBox/static/js/main.0a8a6777.chunk.js.map",
+    "main.js": "/solarBox/static/js/main.df9e965e.chunk.js",
+    "main.js.map": "/solarBox/static/js/main.df9e965e.chunk.js.map",
     "runtime-main.js": "/solarBox/static/js/runtime-main.95a6826a.js",
     "runtime-main.js.map": "/solarBox/static/js/runtime-main.95a6826a.js.map",
     "static/js/2.ff2ade17.chunk.js": "/solarBox/static/js/2.ff2ade17.chunk.js",
@@ -19,6 +19,6 @@
   "entrypoints": [
     "static/js/runtime-main.95a6826a.js",
     "static/js/2.ff2ade17.chunk.js",
-    "static/js/main.0a8a6777.chunk.js"
+    "static/js/main.df9e965e.chunk.js"
   ]
 }
