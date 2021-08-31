@@ -4,8 +4,6 @@ import App from './App'
 import reportWebVitals from './reportWebVitals';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 
-import axios from 'axios';
-import sigfox from '@sigfox/redux-api-middleware';
 import { compose, createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux'
 import { createLogger } from 'redux-logger'
@@ -24,7 +22,6 @@ const store = createStore(
   compose(applyMiddleware(
     sagaMiddleware,
     logger,
-    sigfox(axios.create())
   )));
 sagaMiddleware.run(rootSaga)
 
@@ -37,12 +34,6 @@ const theme = createMuiTheme({
       contrastText: '#fff',
     },
   },
-});
-
-store.dispatch({
-  type: 'api',
-  types: ['REQUEST', 'SUCCESS', 'FAILURE'],
-  promise: client => client.request({ url: 'https://api.sigfox.com/v2/devices/0072E4ED/messages', method: 'get' })
 });
 
 ReactDOM.render(

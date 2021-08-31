@@ -1,12 +1,11 @@
 {
   "name": "solarbox",
-  "version": "1.0.2",
+  "version": "1.0.5",
   "private": true,
   "homepage": "https://villad0522.github.io/solarBox/",
   "dependencies": {
     "@material-ui/core": "^4.11.4",
     "@material-ui/icons": "^4.11.2",
-    "@sigfox/redux-api-middleware": "^1.2.0",
     "@testing-library/jest-dom": "^5.12.0",
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^12.8.3",
