@@ -5,6 +5,19 @@ import { createActions } from 'redux-actions'
 
 export default createActions({
     //
+    SIGFOX: {
+        API_USERS: {
+            SEARCH: (profileId, groupIds) => ({ profileId, groupIds }),
+            CREATE: (groupId, name, timezone, profileIds) => ({ groupId, name, timezone, profileIds }),
+            GET_INFO: (id) => ({ id }),
+            UPDATE: (id, name, timezone, profileId) => ({ id, name, timezone, profileId }),
+            DELETE: (id) => ({ id }),
+            ASSOCIATE_PROFILES: (id, profileId) => ({ id, profileId }),
+            DELETE_PROFILES: (id, profileId) => ({ id, profileId }),
+            GENERATE_PASSWORD: (id) => ({ id }),
+        }
+    },
+    //
     //シリアル通信
     SERIAL: {
         DISCONNECT: () => ({ }),
