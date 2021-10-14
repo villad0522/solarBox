@@ -43,11 +43,12 @@ export function* serialWaitBegin() {
 export function* serialBegin(baudRate) {
     let port = null;
     try {
-        port = yield navigator.serial.requestPort({
+        /*port = yield navigator.serial.requestPort({
             filters: [
                 { usbVendorId: 0x0403, usbProductId: 0x6015, },
             ]
-        });
+        });*/
+        port = yield navigator.serial.requestPort();
         yield port.open({ baudRate: baudRate });
         if (!port) {
             return;

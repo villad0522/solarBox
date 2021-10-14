@@ -1,6 +1,7 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
+import actions from '../../actions';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import DialogTitle from '@material-ui/core/DialogTitle';
@@ -9,8 +10,8 @@ import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 import Typography from '@material-ui/core/Typography';
 
-import FlashImages from '../../containers/FlashImages';
-import FlashGif from '../../containers/FlashGif';
+import FlashImages from './FlashImages';
+import FlashGif from './FlashGif';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -25,23 +26,25 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export default function CustomizedDialogs({ children, bitArray, gifFileName, setBitArray, clearBitArray, testFlash, testMode, }) {
-    const dispatch = useDispatch();
+export default function CustomizedDialogs({ children, testMode, }) {
     const classes = useStyles();
     const [open, setOpen] = React.useState(false);
+    const dispatch = useDispatch();
+    const gifFileName = useSelector(state => state.gifFileName);
+    const bitArray = useSelector(state => state.bitArray);
 
     const handleClickOpen = () => {
         if (testMode) {
-            testFlash(testMode);
+            dispatch(actions.testFlash(testMode));
         }
         else {
-            setBitArray();
+            dispatch(actions.setBitArray());
         }
         setOpen(true);
     };
     const handleClose = () => {
         setOpen(false);
-        clearBitArray();
+        dispatch(actions.clearBitArray());
     };
 
     return (

@@ -27,7 +27,7 @@
  * @version 0.1 AS3 implementation
  */
 
-NeuQuant = function() {
+const NeuQuant = function () {
 
 	var exports = {};
 	var netsize = 256; /* number of colours used */
@@ -180,7 +180,7 @@ NeuQuant = function() {
 			q = network[smallpos];
 
 			/* swap p (i) and q (smallpos) entries */
-			if (i != smallpos) {
+			if (i !== smallpos) {
 				j = q[0];
 				q[0] = p[0];
 				p[0] = j;
@@ -197,7 +197,7 @@ NeuQuant = function() {
 
 			/* smallval entry is now in position i */
 
-			if (smallval != previouscol) {
+			if (smallval !== previouscol) {
 
 				netindex[previouscol] = (startpos + i) >> 1;
 
@@ -435,7 +435,7 @@ NeuQuant = function() {
 					p[0] -= (a * (p[0] - b)) / alpharadbias;
 					p[1] -= (a * (p[1] - g)) / alpharadbias;
 					p[2] -= (a * (p[2] - r)) / alpharadbias;
-				} catch (e) {} // prevents 1.3 miscompilation
+				} catch (e) { } // prevents 1.3 miscompilation
 			}
 
 			if (k > lo) {
@@ -445,7 +445,7 @@ NeuQuant = function() {
 					p[0] -= (a * (p[0] - b)) / alpharadbias;
 					p[1] -= (a * (p[1] - g)) / alpharadbias;
 					p[2] -= (a * (p[2] - r)) / alpharadbias;
-				} catch (e) {}
+				} catch (e) { }
 			}
 		}
 	};
@@ -486,7 +486,7 @@ NeuQuant = function() {
 		var bestbiasd;
 		var n;
 
-		bestd = ~ (1 << 31);
+		bestd = ~(1 << 31);
 		bestbiasd = bestd;
 		bestpos = -1;
 		bestbiaspos = bestpos;
@@ -527,3 +527,5 @@ NeuQuant = function() {
 	NeuQuant.apply(this, arguments);
 	return exports;
 };
+
+export default NeuQuant;

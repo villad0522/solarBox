@@ -1,5 +1,5 @@
 
-const PACKET_SIZE = 6;
+const PACKET_SIZE = 4;
 
 const MASK = parseInt("1001", 2);
 const ST1 = parseInt("0101", 2);    //5

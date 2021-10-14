@@ -2,7 +2,8 @@
 
 import { put, fork, delay } from 'redux-saga/effects';
 import actions from '../actions';
-import encode64 from './b64';
+import encode64 from './jsgif/b64';
+import GIFEncoder from './jsgif/GIFEncoder';
 
 export default function* convertGifFunc({ payload: { canvasElement, imgElements } }) {
     yield fork(convertGif, canvasElement, imgElements);
@@ -16,7 +17,8 @@ function* convertGif(canvasElement, imgElements) {
     //GIFEncoderの初期処理
     const encoder = yield new GIFEncoder();
     yield encoder.setRepeat(0); //繰り返し回数 0=無限ループ
-    yield encoder.setDelay(50); //1コマあたりの待機秒数（ミリ秒）
+    //yield encoder.setDelay(50); //1コマあたりの待機秒数（ミリ秒）
+    yield encoder.setDelay(100); //1コマあたりの待機秒数（ミリ秒）
     yield encoder.start();
     //canvasのサイズを1枚目のコマに合わせる
     canvasElement.current.width = imgElements[0].current.naturalWidth;

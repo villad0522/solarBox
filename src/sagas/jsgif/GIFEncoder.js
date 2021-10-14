@@ -7,7 +7,10 @@
  * @version 0.1 AS3 implementation
  */
 
-GIFEncoder = function() {
+import LZWEncoder from './LZWEncoder';
+import NeuQuant from './NeuQuant';
+
+const GIFEncoder = function () {
 
 	for (var i = 0, chr = {}; i < 256; i++)
 		chr[i] = String.fromCharCode(i);
@@ -16,22 +19,22 @@ GIFEncoder = function() {
 		this.bin = [];
 	}
 
-	ByteArray.prototype.getData = function() {
+	ByteArray.prototype.getData = function () {
 		for (var v = '', l = this.bin.length, i = 0; i < l; i++)
 			v += chr[this.bin[i]];
 		return v;
 	};
 
-	ByteArray.prototype.writeByte = function(val) {
+	ByteArray.prototype.writeByte = function (val) {
 		this.bin.push(val);
 	};
 
-	ByteArray.prototype.writeUTFBytes = function(string) {
+	ByteArray.prototype.writeUTFBytes = function (string) {
 		for (var l = string.length, i = 0; i < l; i++)
 			this.writeByte(string.charCodeAt(i));
 	};
 
-	ByteArray.prototype.writeBytes = function(array, offset, length) {
+	ByteArray.prototype.writeBytes = function (array, offset, length) {
 		for (var l = length || array.length, i = offset || 0; i < l; i++)
 			this.writeByte(array[i]);
 	};
@@ -143,23 +146,23 @@ GIFEncoder = function() {
 				image = im.getImageData(0, 0, im.canvas.width, im.canvas.height).data;
 				if (!sizeSet) setSize(im.canvas.width, im.canvas.height);
 			} else {
-				if(im instanceof ImageData) {
+				if (im instanceof ImageData) {
 					image = im.data;
-					if(!sizeset || width!=im.width || height!=im.height) {
-						setSize(im.width,im.height);
+					if (!sizeSet || width !== im.width || height !== im.height) {
+						setSize(im.width, im.height);
 					} else {
-						
+
 					}
-				} else if(im instanceof Uint8ClampedArray) {
-					if(im.length==(width*height*4)) {
-						image=im;
+				} else if (im instanceof Uint8ClampedArray) {
+					if (im.length === (width * height * 4)) {
+						image = im;
 					} else {
 						console.log("Please set the correct size: ImageData length mismatch");
-						ok=false;
+						ok = false;
 					}
 				} else {
 					console.log("Please provide correct input");
-					ok=false;
+					ok = false;
 				}
 			}
 			getImagePixels(); // convert to correct format if necessary
@@ -188,7 +191,7 @@ GIFEncoder = function() {
 
 		return ok;
 	};
-	
+
 	/**
 	* @description: Downloads the encoded gif with the given name
 	* No need of any conversion from the stream data (out) to base64
@@ -198,15 +201,15 @@ GIFEncoder = function() {
 	* to just calling this function.
 	* @parameter {String} filename filename used for downloading the gif
 	*/
-	
+
 	var download = exports.download = function download(filename) {
-		if(out===null || closeStream==false) {
-			console.log("Please call start method and add frames and call finish method before calling download"); 
+		if (out === null || closeStream === false) {
+			console.log("Please call start method and add frames and call finish method before calling download");
 		} else {
-			filename= filename !== undefined ? ( filename.endsWith(".gif")? filename: filename+".gif" ): "download.gif";
+			filename = filename !== undefined ? (filename.endsWith(".gif") ? filename : filename + ".gif") : "download.gif";
 			var templink = document.createElement("a");
-			templink.download=filename;
-			templink.href= URL.createObjectURL(new Blob([new Uint8Array(out.bin)], {type : "image/gif" } ));
+			templink.download = filename;
+			templink.href = URL.createObjectURL(new Blob([new Uint8Array(out.bin)], { type: "image/gif" }));
 			templink.click();
 		}
 	}
@@ -225,7 +228,7 @@ GIFEncoder = function() {
 
 		try {
 			out.writeByte(0x3b); // gif trailer
-			closeStream=true;
+			closeStream = true;
 		} catch (e) {
 			ok = false;
 		}
@@ -258,7 +261,7 @@ GIFEncoder = function() {
 	 */
 
 	var setFrameRate = exports.setFrameRate = function setFrameRate(fps) {
-		if (fps != 0xf) delay = Math.round(100 / fps);
+		if (fps !== 0xf) delay = Math.round(100 / fps);
 	};
 
 	/**
@@ -559,3 +562,5 @@ GIFEncoder = function() {
 	return exports;
 
 };
+
+export default GIFEncoder;

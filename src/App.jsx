@@ -4,8 +4,9 @@ import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 
-import Diagram from './components/Diagram';
-import Table from './components/Table';
+import Diagram from './pages/Diagram';
+import Table from './pages/Table';
+import ApiDocuments from './pages/ApiDocuments';
 
 const useStyles = makeStyles((theme) => ({
   warapper: {
@@ -33,8 +34,10 @@ const App = () => {
           value={value}
           onChange={(event, newValue) => setValue(newValue)}
         >
-          <Tab label="接続" />
+          <Tab label="接続図" />
           <Tab label="データ集計" />
+          <Tab label="APIドキュメント" />
+          <Tab label="サンプル" />
         </Tabs>
       </AppBar>
       {
@@ -42,6 +45,9 @@ const App = () => {
       }
       {
         (value === 1) ? <Table /> : null
+      }
+      {
+        (value === 2) ? <ApiDocuments /> : null
       }
     </div>
   );

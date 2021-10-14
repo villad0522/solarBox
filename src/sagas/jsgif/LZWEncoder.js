@@ -7,7 +7,7 @@
  * @version 0.1 AS3 implementation
  */
 
-LZWEncoder = function() {
+const LZWEncoder = function () {
 
 	var exports = {};
 	var EOF = -1;
@@ -68,7 +68,7 @@ LZWEncoder = function() {
 	// output
 	// Output the given code.
 	// Inputs:
-	// code: A n_bits-bit integer. If == -1, then EOF. This assumes
+	// code: A n_bits-bit integer. If === -1, then EOF. This assumes
 	// that n_bits =< wordsize - 1.
 	// Outputs:
 	// Outputs code to the file.
@@ -154,11 +154,11 @@ LZWEncoder = function() {
 
 		output(ClearCode, outs);
 
-		outer_loop: while ((c = nextPixel()) != EOF) {
+		outer_loop: while ((c = nextPixel()) !== EOF) {
 			fcode = (c << maxbits) + ent;
 			i = (c << hshift) ^ ent; // xor hashing
 
-			if (htab[i] == fcode) {
+			if (htab[i] === fcode) {
 				ent = codetab[i];
 				continue;
 			}
@@ -172,7 +172,7 @@ LZWEncoder = function() {
 					if ((i -= disp) < 0)
 						i += hsize_reg;
 
-					if (htab[i] == fcode) {
+					if (htab[i] === fcode) {
 						ent = codetab[i];
 						continue outer_loop;
 					}
@@ -254,12 +254,12 @@ LZWEncoder = function() {
 			} else {
 
 				++n_bits;
-				if (n_bits == maxbits) maxcode = maxmaxcode;
+				if (n_bits === maxbits) maxcode = maxmaxcode;
 				else maxcode = MAXCODE(n_bits);
 			}
 		}
 
-		if (code == EOFCode) {
+		if (code === EOFCode) {
 
 			// At EOF, write the rest of the buffer.
 			while (cur_bits > 0) {
@@ -275,3 +275,5 @@ LZWEncoder = function() {
 	LZWEncoder.apply(this, arguments);
 	return exports;
 };
+
+export default LZWEncoder;

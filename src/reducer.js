@@ -8,6 +8,42 @@ import exchangeTimer from './protocols/timer';
 
 
 const defaultState = {
+    datas: [
+        {
+            year: 2022,
+            month: 10,
+            day: 14,
+            week: "木",
+            hour: 9,
+            minutes: 27,
+            seconds: 3,
+            timestamp: 0,
+            name: "",
+            type: "",
+            location: {
+                name: "",
+                latitude: 0,
+                longitude: 0,
+                direction: "北東",
+                tilt: 30,
+            },
+            solar: {
+                voltage: 5,
+                current: 20,
+                power: 0.4,
+            },
+            battery: {
+                voltage: 5,
+                percent: 70,
+            },
+            temperature: 20,
+            pressure: 0,
+            humidity: 0,
+            gas: 0,
+            co2: 0,
+            uv: 0,
+        },
+    ],
     serial: {
         connectFlag: false,
         port: null,
@@ -177,7 +213,7 @@ export default handleActions({
                 continueFlag: true,
                 errorMessages: [],
                 isDialogOpen: false,
-                timeout: 50,
+                timeout: 500,
                 commandProgress: -1,
                 completeAction: actions.im920.wired.setAllParameters(),
                 timeoutAction: actions.im920.wired.timeout(),
