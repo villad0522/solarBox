@@ -7,6 +7,7 @@ import Tab from '@material-ui/core/Tab';
 import Diagram from './pages/Diagram';
 import Table from './pages/Table';
 import ApiDocuments from './pages/ApiDocuments';
+import ColabSample from './pages/ColabSample';
 
 const useStyles = makeStyles((theme) => ({
   warapper: {
@@ -48,6 +49,9 @@ const App = () => {
       }
       {
         (value === 2) ? <ApiDocuments /> : null
+      }
+      {
+        (value === 3) ? <ColabSample /> : null
       }
     </div>
   );

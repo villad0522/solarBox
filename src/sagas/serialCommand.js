@@ -12,7 +12,7 @@ import {
     serialWrite,
 } from './serial';
 
-export function* reciveLoop() {
+export function* serialReciveLoop() {
     let text = "";
     while (true) {
         let ms = yield select(state => state.serialCommand.timeout);

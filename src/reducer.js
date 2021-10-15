@@ -8,42 +8,7 @@ import exchangeTimer from './protocols/timer';
 
 
 const defaultState = {
-    datas: [
-        {
-            year: 2022,
-            month: 10,
-            day: 14,
-            week: "木",
-            hour: 9,
-            minutes: 27,
-            seconds: 3,
-            timestamp: 0,
-            name: "",
-            type: "",
-            location: {
-                name: "",
-                latitude: 0,
-                longitude: 0,
-                direction: "北東",
-                tilt: 30,
-            },
-            solar: {
-                voltage: 5,
-                current: 20,
-                power: 0.4,
-            },
-            battery: {
-                voltage: 5,
-                percent: 70,
-            },
-            temperature: 20,
-            pressure: 0,
-            humidity: 0,
-            gas: 0,
-            co2: 0,
-            uv: 0,
-        },
-    ],
+    iotDatas: [],
     serial: {
         connectFlag: false,
         port: null,
@@ -117,6 +82,17 @@ const defaultState = {
 }
 
 export default handleActions({
+    //
+    //
+    // Azureからデータ取得
+    //============================================================
+    [actions.setIotDatas]: (oldState, { payload: { iotDatas } }) => {
+        return {
+            ...oldState,
+            iotDatas: iotDatas,
+        }
+    },
+    //============================================================
     //
     //
     // シリアル通信

@@ -9,6 +9,8 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 
+import DownloadButton from '../components/DownloadButton';
+
 const useStyles = makeStyles({
     tableContainer: {
         overflowX: 'scroll',
@@ -16,16 +18,22 @@ const useStyles = makeStyles({
     table: {
         width: 'max-content',
     },
+    tableHead: {
+        background: '#eee',
+        position: 'sticky',
+        top: 0,
+    },
 });
 
 export default function BasicTable() {
     const classes = useStyles();
-    const datas = useSelector(state => state?.datas);
+    const iotDatas = useSelector(state => state?.iotDatas);
     const dispatch = useDispatch();
     return (
         <TableContainer className={classes.tableContainer} component={Paper}>
+            <DownloadButton />
             <Table className={classes.table} aria-label="simple table">
-                <TableHead>
+                <TableHead className={classes.tableHead}>
                     <TableRow>
                         <TableCell align="right">日時</TableCell>
                         <TableCell align="right">製品名</TableCell>
@@ -50,7 +58,7 @@ export default function BasicTable() {
                 </TableHead>
                 <TableBody>
                     {
-                        datas.map((data) => <MyRow key={data.id} data={data} />)
+                        iotDatas.map((data) => <MyRow key={data.id} data={data} />)
                     }
                 </TableBody>
             </Table>

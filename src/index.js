@@ -21,7 +21,7 @@ const store = createStore(
   reducer,
   compose(applyMiddleware(
     sagaMiddleware,
-    logger,
+    //logger,
   )));
 sagaMiddleware.run(rootSaga)
 

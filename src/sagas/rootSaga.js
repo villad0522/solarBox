@@ -13,13 +13,15 @@ import { takeEvery, fork } from 'redux-saga/effects';
 import actions from '../actions';
 import convertGifFunc from './convertGif';
 //import sigfoxLoop from './sigfox';
-import { reciveLoop } from './serialCommand';
+import { serialReciveLoop } from './serialCommand';
+import azureReciveLoop from './azureReciveLoop';
 import { im920ConnectFn, im920DisconnectFn } from './im920';
 
 export default function* rootSaga() {
     yield console.log("redux メイン関数　スタート");
     //
-    yield fork(reciveLoop);
+    yield fork(serialReciveLoop);
+    yield fork(azureReciveLoop);
     //yield fork(sigfoxLoop);
     yield takeEvery(actions.im920.wired.connect, im920ConnectFn);
     yield takeEvery(actions.im920.wired.disconnect, im920DisconnectFn);

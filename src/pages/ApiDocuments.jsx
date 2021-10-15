@@ -8,6 +8,7 @@ import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableRow from '@material-ui/core/TableRow';
+import TableHead from '@material-ui/core/TableHead';
 import { CopyBlock, a11yDark } from "react-code-blocks";
 
 const useStyles = makeStyles((theme) => ({
@@ -18,6 +19,15 @@ const useStyles = makeStyles((theme) => ({
     table: {
         width: '90%',
         margin: '0 auto',
+    },
+    tableHead: {
+        background: '#eee',
+        position: 'sticky',
+        top: 0,
+    },
+    copyBlock: {
+        position: 'sticky',
+        top: 0,
     },
 }));
 
@@ -84,15 +94,25 @@ const ApiDocuments = () => {
                 <Box padding={1} />
                 <Grid container>
                     <Grid item xs={12} md={4}>
-                        <CopyBlock
-                            text={JSON.stringify(sample, null, 6)}
-                            language='javascript'
-                            wrapLines
-                            theme={a11yDark}
-                        />
+                        <div className={classes.copyBlock}>
+                            <CopyBlock
+                                text={JSON.stringify(sample, null, 6)}
+                                language='javascript'
+                                wrapLines
+                                theme={a11yDark}
+                            />
+                        </div>
                     </Grid>
                     <Grid item xs={12} md={8}>
                         <Table className={classes.table} aria-label="simple table">
+                            <TableHead className={classes.tableHead}>
+                                <TableRow>
+                                    <TableCell>フィールド名</TableCell>
+                                    <TableCell>説明</TableCell>
+                                    <TableCell>単位</TableCell>
+                                    <TableCell>詳細</TableCell>
+                                </TableRow>
+                            </TableHead>
                             <TableBody>
                                 <TableRow>
                                     <TableCell>year</TableCell>
