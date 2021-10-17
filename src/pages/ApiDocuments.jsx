@@ -1,14 +1,14 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Container from '@material-ui/core/Container';
-import Typography from '@material-ui/core/Typography';
-import Box from '@material-ui/core/Box';
-import Grid from '@material-ui/core/Grid';
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableRow from '@material-ui/core/TableRow';
-import TableHead from '@material-ui/core/TableHead';
+import { makeStyles } from '@mui/styles';
+import Container from '@mui/material/Container';
+import Typography from '@mui/material/Typography';
+import Box from '@mui/material/Box';
+import Grid from '@mui/material/Grid';
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableRow from '@mui/material/TableRow';
+import TableHead from '@mui/material/TableHead';
 import { CopyBlock, a11yDark } from "react-code-blocks";
 
 const useStyles = makeStyles((theme) => ({
@@ -55,10 +55,7 @@ const sample = {
         current: 20,
         power: 0.4,
     },
-    battery: {
-        voltage: 5,
-        percent: 70,
-    },
+    battery: 70,
     temperature: 20,
     pressure: 10,
     humidity: 30,
@@ -234,13 +231,7 @@ const ApiDocuments = () => {
                                     <TableCell></TableCell>
                                 </TableRow>
                                 <TableRow>
-                                    <TableCell>battery.voltage</TableCell>
-                                    <TableCell>バッテリーの電圧</TableCell>
-                                    <TableCell>[V]</TableCell>
-                                    <TableCell></TableCell>
-                                </TableRow>
-                                <TableRow>
-                                    <TableCell>battery.percent</TableCell>
+                                    <TableCell>battery</TableCell>
                                     <TableCell>バッテリー残量</TableCell>
                                     <TableCell>[%]</TableCell>
                                     <TableCell></TableCell>

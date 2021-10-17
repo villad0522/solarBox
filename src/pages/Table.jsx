@@ -1,13 +1,15 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@mui/styles';
 import { useSelector, useDispatch } from 'react-redux';
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableContainer from '@material-ui/core/TableContainer';
-import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
-import Paper from '@material-ui/core/Paper';
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
+import Paper from '@mui/material/Paper';
+import Fab from '@mui/material/Fab';
+import FileDownloadIcon from '@mui/icons-material/FileDownload';
 
 import DownloadButton from '../components/DownloadButton';
 
@@ -44,9 +46,8 @@ export default function BasicTable() {
                         <TableCell align="right">方角</TableCell>
                         <TableCell align="right">傾斜角度</TableCell>
                         <TableCell align="right">ソーラー電圧 [V]</TableCell>
-                        <TableCell align="right">ソーラー電流 [A]</TableCell>
-                        <TableCell align="right">ソーラー電力 [W]</TableCell>
-                        <TableCell align="right">バッテリー電圧 [V]</TableCell>
+                        <TableCell align="right">ソーラー電流 [mA]</TableCell>
+                        <TableCell align="right">ソーラー電力 [mW]</TableCell>
                         <TableCell align="right">バッテリー残量 [%]</TableCell>
                         <TableCell align="right">気温 [℃]</TableCell>
                         <TableCell align="right">気圧 [hPa]</TableCell>
@@ -62,6 +63,10 @@ export default function BasicTable() {
                     }
                 </TableBody>
             </Table>
+            <Fab variant="extended">
+                <FileDownloadIcon sx={{ mr: 1 }} />
+                Navigate
+            </Fab>
         </TableContainer>
     );
 }
@@ -94,8 +99,7 @@ const MyRow = ({ data }) => {
             <TableCell align="right">{data?.solar?.voltage?.toFixed(1)}</TableCell>
             <TableCell align="right">{data?.solar?.current?.toFixed(1)}</TableCell>
             <TableCell align="right">{data?.solar?.power?.toFixed(1)}</TableCell>
-            <TableCell align="right">{data?.battery?.voltage?.toFixed(1)}</TableCell>
-            <TableCell align="right">{data?.battery?.percent + '%'}</TableCell>
+            <TableCell align="right">{data?.battery + '%'}</TableCell>
             <TableCell align="right">{data?.temperature}</TableCell>
             <TableCell align="right">{data?.pressure}</TableCell>
             <TableCell align="right">{data?.humidity + '%'}</TableCell>

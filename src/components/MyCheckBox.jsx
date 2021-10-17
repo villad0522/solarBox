@@ -1,8 +1,8 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Checkbox from '@material-ui/core/Checkbox';
-import OfflineBoltOutlinedIcon from '@material-ui/icons/OfflineBoltOutlined';
-import OfflineBoltIcon from '@material-ui/icons/OfflineBolt';
+import { makeStyles } from '@mui/styles';
+import Checkbox from '@mui/material/Checkbox';
+import OfflineBoltOutlinedIcon from '@mui/icons-material/OfflineBoltOutlined';
+import OfflineBoltIcon from '@mui/icons-material/OfflineBolt';
 
 
 const useStyles = makeStyles((theme) => ({

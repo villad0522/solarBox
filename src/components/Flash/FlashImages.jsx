@@ -1,6 +1,6 @@
 
 import React, { useEffect, useRef } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@mui/styles';
 import { useSelector, useDispatch } from 'react-redux';
 import actions from '../../actions';
 
