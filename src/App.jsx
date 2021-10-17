@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { makeStyles } from '@mui/styles';
-import AppBar from '@mui/material/AppBar';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 
@@ -14,14 +13,6 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     height: '100vh',
   },
-  appBar: {
-    width: 'min-content',
-    height: '100vh',
-    top: '0',
-    bottom: '0',
-    right: 'auto',
-    left: '0',
-  },
 }));
 
 const App = () => {
@@ -29,18 +20,17 @@ const App = () => {
   const [value, setValue] = useState(0);
   return (
     <div className={classes.warapper}>
-      <AppBar position="relative" className={classes.appBar}>
-        <Tabs
-          orientation="vertical"
-          value={value}
-          onChange={(event, newValue) => setValue(newValue)}
-        >
-          <Tab label="接続図" />
-          <Tab label="データ集計" />
-          <Tab label="APIドキュメント" />
-          <Tab label="サンプル" />
-        </Tabs>
-      </AppBar>
+      <Tabs
+        orientation="vertical"
+        value={value}
+        onChange={(event, newValue) => setValue(newValue)}
+        sx={{ borderRight: 1, borderColor: 'divider', width: '120px', }}
+      >
+        <Tab label="接続図" />
+        <Tab label="データ集計" />
+        <Tab label="API" />
+        <Tab label="サンプル" />
+      </Tabs>
       {
         (value === 0) ? <Diagram /> : null
       }

@@ -1,7 +1,9 @@
 import React from "react";
 import ExcelJS from "exceljs";
+import Fab from '@mui/material/Fab';
+import FileDownloadIcon from '@mui/icons-material/FileDownload';
 
-const DownloadButton = ({ name = "ダウンロード", format = "xlsx" }) => {
+const DownloadButton = ({ name = "ダウンロード", format = "xlsx", datas }) => {
     const handlerClickDownloadButton = async (e) => {
         e.preventDefault();
 
@@ -9,29 +11,39 @@ const DownloadButton = ({ name = "ダウンロード", format = "xlsx" }) => {
         workbook.addWorksheet("sheet1");
         const worksheet = workbook.getWorksheet("sheet1");
 
-        worksheet.columns = [
-            { header: "ID", key: "id" },
-            { header: "作成日時", key: "createdAt" },
-            { header: "名前", key: "name" }
-        ];
+        worksheet.columns = [];
 
-        worksheet.addRows([
-            {
-                id: "f001",
-                createdAt: 1629902208,
-                name: "りんご"
-            },
-            {
-                id: "f002",
-                createdAt: 1629902245,
-                name: "ぶとう"
-            },
-            {
-                id: "f003",
-                createdAt: 1629902265,
-                name: "ばなな"
+        for (const key1 in datas[0]) {
+            if (Object.isObject(datas[0][key1])) {
+                for (const key2 in datas[0][key1]) {
+                    worksheet.columns.push({
+                        header: key1 + '.' + key2,
+                        key: key1 + '.' + key2,
+                    });
+                }
             }
-        ]);
+            else {
+                worksheet.columns.push({
+                    header: key1,
+                    key: key1,
+                });
+            }
+        }
+
+        worksheet.addRows(datas.map(data => {
+            const row = {};
+            for (const key1 in data) {
+                if (Object.isObject(data[key1])) {
+                    for (const key2 in data[key1]) {
+                        row[key1 + '.' + key2] = data[key1][key2];
+                    }
+                }
+                else {
+                    row[key1] = data[key1];
+                }
+            }
+            return row;
+        }));
 
         let uint8Array;
         if (format === "xlsx") {
@@ -49,9 +61,19 @@ const DownloadButton = ({ name = "ダウンロード", format = "xlsx" }) => {
         a.remove();
     };
     return (
-        <button onClick={handlerClickDownloadButton}>
+        <Fab
+            variant="extended"
+            onClick={handlerClickDownloadButton}
+            sx={{
+                position: 'absolute',
+                bottom: 16,
+                right: 16,
+            }}
+            disabled={!Array.isArray(datas) || datas?.length == 0}
+        >
+            <FileDownloadIcon sx={{ mr: 1 }} />
             {name}
-        </button>
+        </Fab>
     );
 };
 

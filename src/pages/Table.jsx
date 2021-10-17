@@ -8,8 +8,6 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import Fab from '@mui/material/Fab';
-import FileDownloadIcon from '@mui/icons-material/FileDownload';
 
 import DownloadButton from '../components/DownloadButton';
 
@@ -30,10 +28,10 @@ const useStyles = makeStyles({
 export default function BasicTable() {
     const classes = useStyles();
     const iotDatas = useSelector(state => state?.iotDatas);
+    const datas = useSelector(state => state?.datas);
     const dispatch = useDispatch();
     return (
         <TableContainer className={classes.tableContainer} component={Paper}>
-            <DownloadButton />
             <Table className={classes.table} aria-label="simple table">
                 <TableHead className={classes.tableHead}>
                     <TableRow>
@@ -63,10 +61,7 @@ export default function BasicTable() {
                     }
                 </TableBody>
             </Table>
-            <Fab variant="extended">
-                <FileDownloadIcon sx={{ mr: 1 }} />
-                Navigate
-            </Fab>
+            <DownloadButton />
         </TableContainer>
     );
 }
