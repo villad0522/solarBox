@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.js": "/solarBox/static/js/main.aa278d95.chunk.js",
-    "main.js.map": "/solarBox/static/js/main.aa278d95.chunk.js.map",
+    "main.js": "/solarBox/static/js/main.cd16d383.chunk.js",
+    "main.js.map": "/solarBox/static/js/main.cd16d383.chunk.js.map",
     "react-syntax-highlighter_languages_refractor_abap.js": "/solarBox/static/js/react-syntax-highlighter_languages_refractor_abap.9b10a6e7.chunk.js",
     "react-syntax-highlighter_languages_refractor_abap.js.map": "/solarBox/static/js/react-syntax-highlighter_languages_refractor_abap.9b10a6e7.chunk.js.map",
     "react-syntax-highlighter_languages_refractor_actionscript.js": "/solarBox/static/js/react-syntax-highlighter_languages_refractor_actionscript.30a69660.chunk.js",
@@ -338,6 +338,6 @@
   "entrypoints": [
     "static/js/runtime-main.5b8961c3.js",
     "static/js/153.6cdcd66a.chunk.js",
-    "static/js/main.aa278d95.chunk.js"
+    "static/js/main.cd16d383.chunk.js"
   ]
 }
