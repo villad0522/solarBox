@@ -1,6 +1,6 @@
 {
   "name": "solarbox",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "private": true,
   "homepage": "https://villad0522.github.io/solarBox/",
   "dependencies": {
@@ -18,6 +18,7 @@
     "react": "^17.0.2",
     "react-code-blocks": "^0.0.9-0",
     "react-dom": "^17.0.2",
+    "react-geolocated": "^3.2.0",
     "react-redux": "^7.2.4",
     "react-responsive": "^9.0.0-beta.4",
     "react-router-dom": "^5.2.0",

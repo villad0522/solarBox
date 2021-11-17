@@ -55,7 +55,7 @@ const ColabSample = () => {
                     wrapLines
                     theme={a11yDark}
                     text='import requests
-response = requests.get("https://tec-log2.azurewebsites.net/api/sigfox?code=LcC9XuDli8elQBhqGKqSJSItqnRVp6Zw3kbeTgiODYXQaiYko3t8ag==")
+response = requests.get("https://tec-log2.azurewebsites.net/api/getSolarAll?code=oNgnwUM00BM2KCAt2LDb/yccjS9GNs87MXFuk5aRrIPvSPRZpQ3ViQ==")
 print( response.json() )'
                 />
                 <Box padding={3} />
@@ -65,7 +65,7 @@ print( response.json() )'
                     wrapLines
                     theme={a11yDark}
                     text='import requests
-response = requests.get("https://tec-log2.azurewebsites.net/api/sigfox?code=LcC9XuDli8elQBhqGKqSJSItqnRVp6Zw3kbeTgiODYXQaiYko3t8ag==")
+response = requests.get("https://tec-log2.azurewebsites.net/api/getSolarAll?code=oNgnwUM00BM2KCAt2LDb/yccjS9GNs87MXFuk5aRrIPvSPRZpQ3ViQ==")
 temp = response.json()[4]["temperature"]
 print(temp)'
                 />
@@ -76,7 +76,7 @@ print(temp)'
                     wrapLines
                     theme={a11yDark}
                     text='import requests
-response = requests.get("https://tec-log2.azurewebsites.net/api/sigfox?code=LcC9XuDli8elQBhqGKqSJSItqnRVp6Zw3kbeTgiODYXQaiYko3t8ag==")
+response = requests.get("https://tec-log2.azurewebsites.net/api/getSolarAll?code=oNgnwUM00BM2KCAt2LDb/yccjS9GNs87MXFuk5aRrIPvSPRZpQ3ViQ==")
 power = response.json()[14]["solar"]["power"]
 print(power)'
                 />

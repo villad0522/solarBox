@@ -37,7 +37,7 @@ const ChangeWorkTime = () => {
     setOpen(false);
     dispatch(actions.im920.wired.executeCommands(
       "workTime",
-      ["SWTM " + workTime + "\r", "RWTM\r"],
+      ["ENWR\r", "SWTM " + workTime + "\r", "DSWR\r", "RWTM\r"],
     ));
   };
 

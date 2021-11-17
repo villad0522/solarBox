@@ -16,7 +16,7 @@ const useStyles = makeStyles({
         overflowX: 'scroll',
     },
     table: {
-        width: 'max-content',
+        minWidth: 'max-content',
     },
     tableHead: {
         background: '#eee',
@@ -28,7 +28,6 @@ const useStyles = makeStyles({
 export default function BasicTable() {
     const classes = useStyles();
     const iotDatas = useSelector(state => state?.iotDatas);
-    const datas = useSelector(state => state?.datas);
     const dispatch = useDispatch();
     return (
         <TableContainer className={classes.tableContainer} component={Paper}>
@@ -57,7 +56,7 @@ export default function BasicTable() {
                 </TableHead>
                 <TableBody>
                     {
-                        iotDatas.map((data) => <MyRow key={data.id} data={data} />)
+                        iotDatas.slice(0,).map((data) => <MyRow key={data.id} data={data} />)
                     }
                 </TableBody>
             </Table>

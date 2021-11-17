@@ -79,7 +79,7 @@ const ApiDocuments = () => {
                 </Typography>
                 <Box padding={1} />
                 <CopyBlock
-                    text="https://tec-log2.azurewebsites.net/api/sigfox?code=LcC9XuDli8elQBhqGKqSJSItqnRVp6Zw3kbeTgiODYXQaiYko3t8ag=="
+                    text="https://tec-log2.azurewebsites.net/api/getSolarAll?code=oNgnwUM00BM2KCAt2LDb/yccjS9GNs87MXFuk5aRrIPvSPRZpQ3ViQ=="
                     language='plane'
                     wrapLines
                     theme={a11yDark}

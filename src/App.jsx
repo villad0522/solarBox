@@ -26,16 +26,16 @@ const App = () => {
         onChange={(event, newValue) => setValue(newValue)}
         sx={{ borderRight: 1, borderColor: 'divider', width: '120px', }}
       >
-        <Tab label="接続図" />
         <Tab label="データ集計" />
+        <Tab label="接続図" />
         <Tab label="API" />
         <Tab label="サンプル" />
       </Tabs>
       {
-        (value === 0) ? <Diagram /> : null
+        (value === 0) ? <Table /> : null
       }
       {
-        (value === 1) ? <Table /> : null
+        (value === 1) ? <Diagram /> : null
       }
       {
         (value === 2) ? <ApiDocuments /> : null

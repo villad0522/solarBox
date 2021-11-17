@@ -31,7 +31,7 @@ const ChangeSleepTime = () => {
     setOpen(false);
     dispatch(actions.im920.wired.executeCommands(
       "sleepTime",
-      ["SSTM " + sleepTime + "\r", "RSTM\r"],
+      ["ENWR\r", "SSTM " + sleepTime + "\r", "DSWR\r", "RSTM\r"],
     ));
   };
 

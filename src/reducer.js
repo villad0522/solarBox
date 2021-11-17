@@ -12,6 +12,7 @@ const defaultState = {
     serial: {
         connectFlag: false,
         port: null,
+        recieveDatas: [],
     },
     serialCommand: {
         continueFlag: false,
@@ -120,10 +121,9 @@ export default handleActions({
     [actions.serialCommand.setRecieveData]: (oldState, { payload: { text } }) => {
         const progress = oldState.serialCommand.commandProgress;
         const commands = oldState.serialCommand.commands;
+        const lines = text.split("\r\n");
+        lines.pop();
         if (0 <= progress && progress < commands.length) {
-            const lines = text.split("\r\n");
-            lines.pop();
-            console.log("受信:", lines);
             commands[progress].recieveDatas = lines;
             for (const line of lines) {
                 if (line === "NG") {
@@ -145,8 +145,13 @@ export default handleActions({
                 }
             }
         }
+        console.log("受信:", lines);
         return {
             ...oldState,
+            serial: {
+                ...oldState.serial,
+                recieveDatas: lines,
+            },
             serialCommand: {
                 ...oldState.serialCommand,
                 continueFlag: true,
@@ -189,7 +194,7 @@ export default handleActions({
                 continueFlag: true,
                 errorMessages: [],
                 isDialogOpen: false,
-                timeout: 500,
+                timeout: 100,
                 commandProgress: -1,
                 completeAction: actions.im920.wired.setAllParameters(),
                 timeoutAction: actions.im920.wired.timeout(),

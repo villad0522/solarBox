@@ -30,7 +30,7 @@ const ChangeRate = () => {
     setOpen(false);
     dispatch(actions.im920.wired.executeCommands(
       "wirelessRate",
-      ["STRT " + wirelessRate + "\r", "RDRT\r"],
+      ["ENWR\r", "STRT " + wirelessRate + "\r", "DSWR\r", "RDRT\r"],
     ));
   };
 

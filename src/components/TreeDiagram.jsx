@@ -140,7 +140,7 @@ const useStyles = makeStyles((theme) => ({
     //======================================
     //
     nodeWrapper: {
-        height: (BOX_SIZE * 2) + 'px',
+        height: (BOX_SIZE * 2 + 30) + 'px',
         display: 'flex',
         position: 'sticky',
         top: PADDINNG_TOP + 'px',

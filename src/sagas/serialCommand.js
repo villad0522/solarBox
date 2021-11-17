@@ -84,6 +84,54 @@ function* nextFn(text) {
     //今回受け取ったレスポンスを、storeに保存
     yield put(actions.serialCommand.setRecieveData(text));
     //
+    // IM920から受け取ったデータを整形
+    let recieveText = text.split("\r\n")[0];   //改行で区切る
+    if (recieveText.length === 34 && recieveText.substr(10, 1) === ":") {
+        const hexString = recieveText.split(":")[1];      //コロン「:」以後だけを切り取る
+        let soc = parseInt(hexString.substr(0, 2), 16);
+        let loadvoltage = parseInt(hexString.substr(2, 2), 16);
+        let current_mA = parseInt(hexString.substr(4, 4), 16);
+        let temp = parseInt(hexString.substr(8, 2), 16);
+        let humidity = parseInt(hexString.substr(10, 2), 16);
+        let pressure = parseInt(hexString.substr(12, 2), 16);
+        let gas = parseInt(hexString.substr(14, 2), 16);
+        soc /= 2;
+        loadvoltage /= 50;
+        loadvoltage += 12.00;
+        current_mA /= 50;
+        temp /= 4;
+        temp -= 10;
+        humidity /= 2;
+        pressure /= 8;
+        pressure += 998;
+        gas *= 4;
+        const date = new Date();
+        const im920 = {
+            id: "_" + date.getTime(),
+            type: "IM920",
+            timestamp: date.getTime(),
+            year: date.getFullYear(),
+            month: date.getMonth() + 1,
+            day: date.getDate(),
+            week: ["日", "月", "火", "水", "木", "金", "土"][date.getDay()],
+            hour: date.getHours(),
+            minutes: date.getMinutes(),
+            seconds: date.getSeconds(),
+            name: "外でも涼しく過ごせるミスト",
+            solar: {
+                voltage: loadvoltage,
+                current: current_mA,
+                power: loadvoltage * current_mA,
+            },
+            battery: soc,
+            temperature: temp,
+            pressure: pressure,
+            humidity: humidity,
+            gas: gas,
+        };
+        console.log(im920);
+    }
+    //
     const errorMessages = yield select(state => state.serialCommand.errorMessages);
     if (errorMessages.length > 0) {
         return;

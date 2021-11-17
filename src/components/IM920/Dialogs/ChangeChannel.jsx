@@ -30,7 +30,7 @@ const ChangeChannel = () => {
     setOpen(false);
     dispatch(actions.im920.wired.executeCommands(
       "channelNumber",
-      ["STCH " + channelNumber + "\r", "RDCH\r"],
+      ["ENWR\r", "STCH " + channelNumber + "\r", "DSWR\r", "RDCH\r"],
     ));
   };
 

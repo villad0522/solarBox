@@ -29,7 +29,7 @@ const ChangePower = () => {
     setOpen(false);
     dispatch(actions.im920.wired.executeCommands(
       "sendPower",
-      ["STPO " + sendPower + "\r", "RDPO\r"],
+      ["ENWR\r", "STPO " + sendPower + "\r", "DSWR\r", "RDPO\r"],
     ));
   };
 

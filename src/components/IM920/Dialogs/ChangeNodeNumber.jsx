@@ -30,7 +30,7 @@ const ChangeNodeNumber = () => {
     setOpen(false);
     dispatch(actions.im920.wired.executeCommands(
       "nodeNumber",
-      ["STNN " + nodeNumber + "\r", "RDNN\r"],
+      ["ENWR\r", "STNN " + nodeNumber + "\r", "DSWR\r", "RDNN\r"],
     ));
   };
 

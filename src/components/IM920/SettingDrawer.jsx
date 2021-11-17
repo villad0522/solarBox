@@ -11,9 +11,6 @@ import SettingsIcon from '@mui/icons-material/Settings';
 import Setting from './Setting';
 
 const useStyles = makeStyles((theme) => ({
-  root: {
-    flexGrow: 1,
-  },
   closeButton: {
     marginRight: theme.spacing(2),
   },

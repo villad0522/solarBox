@@ -6,7 +6,6 @@ import SerialWiredDrawer from '../components/IM920/SettingDrawer';
 import IM920ConnectButton from '../components/IM920/ConnectButton';
 import IM920ConnectDialog from '../components/IM920/Connect';
 import { Tree } from '../components/TreeDiagram';
-import FlashDialog from '../components/Flash/FlashDialog';
 import pcImg from '../img/pc.png'
 import solarImg from '../img/solar.png'
 import antennaImg from '../img/antenna.png'
@@ -34,14 +33,24 @@ const Diagram = () => {
   const im920ConnectFlag = useSelector(state => state.im920.wired.connectFlag);
   const wiredConnectFlag = serialConnectFlag && im920ConnectFlag;
   let recieveIds = useSelector(state => state.im920.wired.recieveIds);
+  const iotDatas = useSelector(state => state?.iotDatas);
+  let sigfoxConnectFlag = false;
+  const now = new Date();
+  for (const data of iotDatas) {
+    const time = now.getTime() - data?.timestamp;
+    if (time > 180000) {
+      //3分以上通信が来ない
+      continue;
+    }
+    if (data?.type === "SigFox") {
+      sigfoxConnectFlag = true;
+    }
+  }
   if (!Array.isArray(recieveIds)) {
     recieveIds = [];
   }
   return (
     <div className={classes.wrapper}>
-      <FlashDialog testMode="combo">
-        combo test
-      </FlashDialog>
       <IM920ConnectDialog />
       <Tree
         src={internetImg}
@@ -61,7 +70,7 @@ const Diagram = () => {
           >
             {
               recieveIds.map(recieveId =>
-                <Tree src={solarImg} name={"0x" + recieveId} connectFlag={false} />
+                <Tree src={solarImg} name={recieveId} connectFlag={false} />
               )
             }
           </Tree>
@@ -71,6 +80,7 @@ const Diagram = () => {
           name="Sigfox"
           connectFlag={true}
         >
+          <Tree src={solarImg} name={"0072E4ED"} connectFlag={sigfoxConnectFlag} />
         </Tree>
         <Tree
           src={wifiImg}
