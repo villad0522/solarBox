@@ -41,6 +41,11 @@ export default createActions({
             EXECUTE_COMMANDS: (key, commands) => ({ key, commands }),
             SET_ALL_PARAMETERS: () => ({}),
             SET_PARAMETER: (key) => ({ key }),
+            CONTINUE_TXDT: () => ({}),
+        },
+        MIST: {
+            SET_LED_MODE: (ledMode) => ({ ledMode }),
+            SET_MIST_MODE: (mistMode) => ({ mistMode }),
         },
     },
     //

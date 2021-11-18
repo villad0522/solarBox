@@ -11,6 +11,7 @@ import {
     serialWaitBegin,
     serialWrite,
 } from './serial';
+import axios from 'axios';
 
 export function* serialReciveLoop() {
     let text = "";
@@ -58,7 +59,7 @@ function* firstFn() {
         }
         yield serialWaitBegin();
         yield put(actions.serialCommand.setRecieveData(""));
-        yield put(actions.serialCommand.openDialog());
+        //yield put(actions.serialCommand.openDialog());
         yield serialWrite(commands[0].sendData);    //最初のコマンドを送信
     }
     else if (0 <= progress && progress < commands.length) {
@@ -88,13 +89,14 @@ function* nextFn(text) {
     let recieveText = text.split("\r\n")[0];   //改行で区切る
     if (recieveText.length === 34 && recieveText.substr(10, 1) === ":") {
         const hexString = recieveText.split(":")[1];      //コロン「:」以後だけを切り取る
-        let soc = parseInt(hexString.substr(0, 2), 16);
-        let loadvoltage = parseInt(hexString.substr(2, 2), 16);
-        let current_mA = parseInt(hexString.substr(4, 4), 16);
-        let temp = parseInt(hexString.substr(8, 2), 16);
-        let humidity = parseInt(hexString.substr(10, 2), 16);
-        let pressure = parseInt(hexString.substr(12, 2), 16);
-        let gas = parseInt(hexString.substr(14, 2), 16);
+        const hexStrings = hexString.split(",");
+        let soc = parseInt(hexStrings[0], 16);
+        let loadvoltage = parseInt(hexStrings[1], 16);
+        let current_mA = parseInt(hexStrings[2] + hexStrings[3], 16);
+        let temp = parseInt(hexStrings[4], 16);
+        let humidity = parseInt(hexStrings[5], 16);
+        let pressure = parseInt(hexStrings[6], 16);
+        let gas = parseInt(hexStrings[7], 16);
         soc /= 2;
         loadvoltage /= 50;
         loadvoltage += 12.00;
@@ -130,6 +132,13 @@ function* nextFn(text) {
             gas: gas,
         };
         console.log(im920);
+        const res = yield axios.post(
+            "https://tec-log2.azurewebsites.net/api/sigfox?code=LcC9XuDli8elQBhqGKqSJSItqnRVp6Zw3kbeTgiODYXQaiYko3t8ag==",
+            im920
+        );
+        if (res.status === 200) {
+            yield console.log("IM920のデータをアップロードしました");
+        }
     }
     //
     const errorMessages = yield select(state => state.serialCommand.errorMessages);

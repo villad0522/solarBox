@@ -2,7 +2,8 @@ import React from 'react';
 import { makeStyles } from '@mui/styles';
 import { useSelector } from 'react-redux'
 
-import SerialWiredDrawer from '../components/IM920/SettingDrawer';
+import MistSettingDrawer from '../components/Mist/SettingDrawer';
+import IM920SettingDrawer from '../components/IM920/SettingDrawer';
 import IM920ConnectButton from '../components/IM920/ConnectButton';
 import IM920ConnectDialog from '../components/IM920/Connect';
 import { Tree } from '../components/TreeDiagram';
@@ -64,13 +65,18 @@ const Diagram = () => {
           <Tree
             src={antennaImg}
             name="無線受信機"
-            actionButtons={wiredConnectFlag ? <SerialWiredDrawer /> : null}
+            actionButtons={wiredConnectFlag ? <IM920SettingDrawer /> : null}
             connectFlag={wiredConnectFlag}
             connectButton={<IM920ConnectButton />}
           >
             {
               recieveIds.map(recieveId =>
-                <Tree src={solarImg} name={recieveId} connectFlag={false} />
+                <Tree
+                  src={solarImg}
+                  name={recieveId}
+                  actionButtons={wiredConnectFlag ? <MistSettingDrawer /> : null}
+                  connectFlag={false}
+                />
               )
             }
           </Tree>

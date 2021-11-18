@@ -38,6 +38,11 @@ const defaultState = {
             sleepTime: "",
             workTime: "",
         },
+        mist: {
+            changeTime: 0,
+            mistMode: 0,
+            ledMode: 0,
+        },
     },
     sigfox: [
         {
@@ -193,7 +198,7 @@ export default handleActions({
             serialCommand: {
                 continueFlag: true,
                 errorMessages: [],
-                isDialogOpen: false,
+                isDialogOpen: true,
                 timeout: 100,
                 commandProgress: -1,
                 completeAction: actions.im920.wired.setAllParameters(),
@@ -219,10 +224,11 @@ export default handleActions({
         return {
             ...oldState,
             serialCommand: {
+                ...oldState.serialCommand,
                 continueFlag: false,
                 errorMessages: [],
                 isDialogOpen: false,
-                timeout: 100,
+                timeout: 0,
                 commandProgress: -1,
                 completeAction: null,
                 timeoutAction: null,
@@ -260,7 +266,7 @@ export default handleActions({
                 continueFlag: true,
                 errorMessages: [],
                 isDialogOpen: true,
-                timeout: 50,
+                timeout: 500,
                 commandProgress: -1,
                 completeAction: actions.im920.wired.setParameter(key),
                 timeoutAction: actions.im920.wired.timeout(),
@@ -270,6 +276,22 @@ export default handleActions({
     },
     //============================================================
     [actions.im920.wired.setParameter]: (oldState, { payload: { key } }) => {
+        if (!key) {
+            return {
+                ...oldState,
+                serialCommand: {
+                    ...oldState.serialCommand,
+                    continueFlag: false,
+                    errorMessages: [],
+                    isDialogOpen: false,
+                    timeout: 0,
+                    commandProgress: -1,
+                    completeAction: null,
+                    timeoutAction: null,
+                    commands: [],
+                },
+            };
+        }
         const commands = oldState.serialCommand.commands;
         let parameters = oldState.im920.wired;
         parameters = JSON.parse(JSON.stringify(parameters));
@@ -283,10 +305,11 @@ export default handleActions({
         return {
             ...oldState,
             serialCommand: {
+                ...oldState.serialCommand,
                 continueFlag: false,
-                errorMessages: oldState.serialCommand.errorMessages,
+                errorMessages: [],
                 isDialogOpen: false,
-                timeout: 100,
+                timeout: 0,
                 commandProgress: -1,
                 completeAction: null,
                 timeoutAction: null,
@@ -315,6 +338,7 @@ export default handleActions({
                 ]),
             },
             im920: {
+                ...oldState.im920,
                 wired: {
                     connectFlag: false,
                     deviceId: "",
@@ -344,6 +368,7 @@ export default handleActions({
                 commandProgress: oldState.serialCommand.commands.length,
             },
             im920: {
+                ...oldState.im920,
                 wired: {
                     connectFlag: false,
                     deviceId: "",
@@ -361,6 +386,104 @@ export default handleActions({
         };
     },
     //============================================================
+    [actions.im920.wired.continueTxdt]: (oldState) => {
+        const nowTime = new Date().getTime();
+        const diffTime = nowTime - oldState.im920.mist.changeTime;
+        if (diffTime > 6000) {
+            return {
+                ...oldState,
+                serialCommand: {
+                    ...oldState.serialCommand,
+                    continueFlag: false,
+                    errorMessages: [],
+                    isDialogOpen: false,
+                    timeout: 0,
+                    commandProgress: -1,
+                    completeAction: null,
+                    timeoutAction: null,
+                    commands: [],
+                },
+            };
+        }
+        return {
+            ...oldState,
+            serialCommand: {
+                ...oldState.serialCommand,
+                commandProgress: -1,
+                isDialogOpen: false,
+                commands: [
+                    {
+                        sendData: "TXDT " + oldState.im920.mist.ledMode + oldState.im920.mist.mistMode + "000000\r",
+                        recieveDatas: [],
+                    },
+                ],
+            },
+        };
+    },
+    //============================================================
+    //
+    //
+    //
+    //============================================================
+    [actions.im920.mist.setLedMode]: (oldState, { payload: { ledMode } }) => {
+        return {
+            ...oldState,
+            im920: {
+                ...oldState.im920,
+                mist: {
+                    ...oldState.im920.mist,
+                    ledMode: ledMode,
+                    changeTime: new Date().getTime(),
+                },
+            },
+            serialCommand: {
+                continueFlag: true,
+                errorMessages: [],
+                isDialogOpen: false,
+                timeout: 500,
+                commandProgress: -1,
+                completeAction: actions.im920.wired.continueTxdt(),
+                timeoutAction: null,
+                commands: [
+                    {
+                        sendData: "TXDT " + ledMode + oldState.im920.mist.mistMode + "000000\r",
+                        recieveDatas: [],
+                    },
+                ],
+            },
+        };
+    },
+    //============================================================
+    [actions.im920.mist.setMistMode]: (oldState, { payload: { mistMode } }) => {
+        return {
+            ...oldState,
+            im920: {
+                ...oldState.im920,
+                mist: {
+                    ...oldState.im920.mist,
+                    mistMode: mistMode,
+                    changeTime: new Date().getTime(),
+                },
+            },
+            serialCommand: {
+                continueFlag: true,
+                errorMessages: [],
+                isDialogOpen: false,
+                timeout: 500,
+                commandProgress: -1,
+                completeAction: actions.im920.wired.continueTxdt(),
+                timeoutAction: null,
+                commands: [
+                    {
+                        sendData: "TXDT " + oldState.im920.mist.ledMode + mistMode + "000000\r",
+                        recieveDatas: [],
+                    },
+                ],
+            },
+        };
+    },
+    //============================================================
+    //
     //
     //
     //============================================================
