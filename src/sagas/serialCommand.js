@@ -132,12 +132,20 @@ function* nextFn(text) {
             gas: gas,
         };
         console.log(im920);
-        const res = yield axios.post(
-            "https://tec-log2.azurewebsites.net/api/sigfox?code=LcC9XuDli8elQBhqGKqSJSItqnRVp6Zw3kbeTgiODYXQaiYko3t8ag==",
-            im920
-        );
-        if (res.status === 200) {
-            yield console.log("IM920のデータをアップロードしました");
+        try {
+            const res = yield axios.post(
+                "https://tec-log2.azurewebsites.net/api/sigfox?code=LcC9XuDli8elQBhqGKqSJSItqnRVp6Zw3kbeTgiODYXQaiYko3t8ag==",
+                im920
+            );
+            if (res.status === 200) {
+                yield console.log("IM920のデータをアップロードしました");
+            }
+        }
+        catch (error) {
+            console.log("エラー");
+            console.log(error);
+        }
+        finally {
         }
     }
     //

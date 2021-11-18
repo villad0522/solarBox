@@ -44,8 +44,8 @@ export default createActions({
             CONTINUE_TXDT: () => ({}),
         },
         MIST: {
-            SET_LED_MODE: (ledMode) => ({ ledMode }),
-            SET_MIST_MODE: (mistMode) => ({ mistMode }),
+            SEND: (mist, led, music) => ({ mist, led, music }),
+            RECIEVE: (mist, led, music) => ({ mist, led, music }),
         },
     },
     //

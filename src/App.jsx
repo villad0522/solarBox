@@ -7,6 +7,7 @@ import Diagram from './pages/Diagram';
 import Table from './pages/Table';
 import ApiDocuments from './pages/ApiDocuments';
 import ColabSample from './pages/ColabSample';
+import MistSetting from './pages/MistSetting';
 
 const useStyles = makeStyles((theme) => ({
   warapper: {
@@ -30,6 +31,7 @@ const App = () => {
         <Tab label="接続図" />
         <Tab label="API" />
         <Tab label="サンプル" />
+        <Tab label="ミスト操作" />
       </Tabs>
       {
         (value === 0) ? <Table /> : null
@@ -42,6 +44,9 @@ const App = () => {
       }
       {
         (value === 3) ? <ColabSample /> : null
+      }
+      {
+        (value === 4) ? <MistSetting /> : null
       }
     </div>
   );

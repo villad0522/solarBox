@@ -16,6 +16,7 @@ import convertGifFunc from './convertGif';
 import { serialReciveLoop } from './serialCommand';
 import azureReciveLoop from './azureReciveLoop';
 import { im920ConnectFn, im920DisconnectFn } from './im920';
+import mistSendFn from './mist';
 
 export default function* rootSaga() {
     yield console.log("redux メイン関数　スタート");
@@ -26,6 +27,7 @@ export default function* rootSaga() {
     yield takeEvery(actions.im920.wired.connect, im920ConnectFn);
     yield takeEvery(actions.im920.wired.disconnect, im920DisconnectFn);
     yield takeEvery(actions.im920.wired.timeout, im920DisconnectFn);
+    yield takeEvery(actions.im920.mist.send, mistSendFn);
     yield takeEvery(actions.convertGif, convertGifFunc);
     //
     yield console.log("redux メイン関数　終了");

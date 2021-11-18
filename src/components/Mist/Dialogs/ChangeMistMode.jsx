@@ -14,7 +14,6 @@ import actions from '../../../actions';
 const ChangeModeMode = () => {
   const dispatch = useDispatch();
   const [open, setOpen] = useState(false);
-  const ledMode = useSelector(state => state.im920.mist.ledMode);
   const mistMode = useSelector(state => state.im920.mist.mistMode);
 
   const handleClickOpen = () => {

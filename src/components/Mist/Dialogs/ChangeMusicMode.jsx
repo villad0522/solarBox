@@ -11,10 +11,10 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 
 import actions from '../../../actions';
 
-const ChangeLedMode = () => {
+const ChangeMusicMode = () => {
   const dispatch = useDispatch();
   const [open, setOpen] = useState(false);
-  const ledMode = useSelector(state => state.im920.mist.ledMode);
+  const musicMode = useSelector(state => state.im920.mist.musicMode);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -33,17 +33,21 @@ const ChangeLedMode = () => {
         open={open}
         onClose={handleClose}
       >
-        <DialogTitle>LEDライト制御</DialogTitle>
+        <DialogTitle>スピーカー制御</DialogTitle>
         <DialogContent>
           <RadioGroup
-            value={ledMode}
+            value={musicMode}
             onChange={(event) =>
-              dispatch(actions.im920.mist.setLedMode(event.target.value))
+              dispatch(actions.im920.mist.setMusicMode(event.target.value))
             }
           >
             <FormControlLabel control={<Radio />} value="0" label="常時OFF" />
-            <FormControlLabel control={<Radio />} value="1" label="常時ON" />
-            <FormControlLabel control={<Radio />} value="2" label="人がいるときだけON" />
+            <FormControlLabel control={<Radio />} value="1" label="常時「ゆりかごの唄」" />
+            <FormControlLabel control={<Radio />} value="2" label="常時「ブラームスの子守唄」" />
+            <FormControlLabel control={<Radio />} value="3" label="常時「ロッカバイ ベィビィ」" />
+            <FormControlLabel control={<Radio />} value="4" label="人が来たら「ゆりかごの唄」" />
+            <FormControlLabel control={<Radio />} value="5" label="人が来たら「ブラームスの子守唄」" />
+            <FormControlLabel control={<Radio />} value="6" label="人が来たら「ロッカバイ ベィビィ」" />
           </RadioGroup>
         </DialogContent>
         <DialogActions>
@@ -59,4 +63,4 @@ const ChangeLedMode = () => {
     </div>
   );
 }
-export default ChangeLedMode;
+export default ChangeMusicMode;

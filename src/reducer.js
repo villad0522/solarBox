@@ -40,8 +40,9 @@ const defaultState = {
         },
         mist: {
             changeTime: 0,
-            mistMode: 0,
-            ledMode: 0,
+            mist: "0",
+            led: "0",
+            music: "0",
         },
     },
     sigfox: [
@@ -413,7 +414,7 @@ export default handleActions({
                 isDialogOpen: false,
                 commands: [
                     {
-                        sendData: "TXDT " + oldState.im920.mist.ledMode + oldState.im920.mist.mistMode + "000000\r",
+                        sendData: "TXDT " + oldState.im920.mist.led + oldState.im920.mist.mist + oldState.im920.mist.music + "00000\r",
                         recieveDatas: [],
                     },
                 ],
@@ -425,14 +426,16 @@ export default handleActions({
     //
     //
     //============================================================
-    [actions.im920.mist.setLedMode]: (oldState, { payload: { ledMode } }) => {
+    [actions.im920.mist.recieve]: (oldState, { payload: { mist, led, music } }) => {
         return {
             ...oldState,
             im920: {
                 ...oldState.im920,
                 mist: {
                     ...oldState.im920.mist,
-                    ledMode: ledMode,
+                    mist: mist,
+                    led: led,
+                    music: music,
                     changeTime: new Date().getTime(),
                 },
             },
@@ -446,36 +449,7 @@ export default handleActions({
                 timeoutAction: null,
                 commands: [
                     {
-                        sendData: "TXDT " + ledMode + oldState.im920.mist.mistMode + "000000\r",
-                        recieveDatas: [],
-                    },
-                ],
-            },
-        };
-    },
-    //============================================================
-    [actions.im920.mist.setMistMode]: (oldState, { payload: { mistMode } }) => {
-        return {
-            ...oldState,
-            im920: {
-                ...oldState.im920,
-                mist: {
-                    ...oldState.im920.mist,
-                    mistMode: mistMode,
-                    changeTime: new Date().getTime(),
-                },
-            },
-            serialCommand: {
-                continueFlag: true,
-                errorMessages: [],
-                isDialogOpen: false,
-                timeout: 500,
-                commandProgress: -1,
-                completeAction: actions.im920.wired.continueTxdt(),
-                timeoutAction: null,
-                commands: [
-                    {
-                        sendData: "TXDT " + oldState.im920.mist.ledMode + mistMode + "000000\r",
+                        sendData: "TXDT " + led + mist + music + "00000\r",
                         recieveDatas: [],
                     },
                 ],
