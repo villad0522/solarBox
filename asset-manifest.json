@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.js": "/solarBox/static/js/main.7ac0c7bd.chunk.js",
-    "main.js.map": "/solarBox/static/js/main.7ac0c7bd.chunk.js.map",
+    "main.js": "/solarBox/static/js/main.08421593.chunk.js",
+    "main.js.map": "/solarBox/static/js/main.08421593.chunk.js.map",
     "react-syntax-highlighter_languages_refractor_abap.js": "/solarBox/static/js/react-syntax-highlighter_languages_refractor_abap.6fcbac83.chunk.js",
     "react-syntax-highlighter_languages_refractor_abap.js.map": "/solarBox/static/js/react-syntax-highlighter_languages_refractor_abap.6fcbac83.chunk.js.map",
     "react-syntax-highlighter_languages_refractor_actionscript.js": "/solarBox/static/js/react-syntax-highlighter_languages_refractor_actionscript.2c1f14ea.chunk.js",
@@ -304,24 +304,24 @@
     "react-syntax-highlighter_languages_refractor_xquery.js.map": "/solarBox/static/js/react-syntax-highlighter_languages_refractor_xquery.3a3f3091.chunk.js.map",
     "react-syntax-highlighter_languages_refractor_yaml.js": "/solarBox/static/js/react-syntax-highlighter_languages_refractor_yaml.6a375eb2.chunk.js",
     "react-syntax-highlighter_languages_refractor_yaml.js.map": "/solarBox/static/js/react-syntax-highlighter_languages_refractor_yaml.6a375eb2.chunk.js.map",
-    "runtime-main.js": "/solarBox/static/js/runtime-main.697c06ea.js",
-    "runtime-main.js.map": "/solarBox/static/js/runtime-main.697c06ea.js.map",
-    "static/js/153.7ee16af4.chunk.js": "/solarBox/static/js/153.7ee16af4.chunk.js",
-    "static/js/153.7ee16af4.chunk.js.map": "/solarBox/static/js/153.7ee16af4.chunk.js.map",
-    "static/js/154.3e2ecbaa.chunk.js": "/solarBox/static/js/154.3e2ecbaa.chunk.js",
-    "static/js/154.3e2ecbaa.chunk.js.map": "/solarBox/static/js/154.3e2ecbaa.chunk.js.map",
+    "runtime-main.js": "/solarBox/static/js/runtime-main.eb8c0d7e.js",
+    "runtime-main.js.map": "/solarBox/static/js/runtime-main.eb8c0d7e.js.map",
+    "static/js/153.0b7ed954.chunk.js": "/solarBox/static/js/153.0b7ed954.chunk.js",
+    "static/js/153.0b7ed954.chunk.js.map": "/solarBox/static/js/153.0b7ed954.chunk.js.map",
+    "static/js/154.1b12e400.chunk.js": "/solarBox/static/js/154.1b12e400.chunk.js",
+    "static/js/154.1b12e400.chunk.js.map": "/solarBox/static/js/154.1b12e400.chunk.js.map",
     "static/js/155.895cbc29.chunk.js": "/solarBox/static/js/155.895cbc29.chunk.js",
     "static/js/155.895cbc29.chunk.js.map": "/solarBox/static/js/155.895cbc29.chunk.js.map",
     "index.html": "/solarBox/index.html",
-    "static/js/153.7ee16af4.chunk.js.LICENSE.txt": "/solarBox/static/js/153.7ee16af4.chunk.js.LICENSE.txt",
+    "static/js/153.0b7ed954.chunk.js.LICENSE.txt": "/solarBox/static/js/153.0b7ed954.chunk.js.LICENSE.txt",
     "static/media/pc.7962dd73.png": "/solarBox/static/media/pc.7962dd73.png",
     "static/media/sigfox.9c60e923.png": "/solarBox/static/media/sigfox.9c60e923.png",
     "static/media/solar.1102d478.png": "/solarBox/static/media/solar.1102d478.png",
     "static/media/wifi.6af898c6.png": "/solarBox/static/media/wifi.6af898c6.png"
   },
   "entrypoints": [
-    "static/js/runtime-main.697c06ea.js",
-    "static/js/153.7ee16af4.chunk.js",
-    "static/js/main.7ac0c7bd.chunk.js"
+    "static/js/runtime-main.eb8c0d7e.js",
+    "static/js/153.0b7ed954.chunk.js",
+    "static/js/main.08421593.chunk.js"
   ]
 }
