@@ -200,7 +200,7 @@ export default handleActions({
                 continueFlag: true,
                 errorMessages: [],
                 isDialogOpen: true,
-                timeout: 100,
+                timeout: 500,
                 commandProgress: -1,
                 completeAction: actions.im920.wired.setAllParameters(),
                 timeoutAction: actions.im920.wired.timeout(),
@@ -215,6 +215,7 @@ export default handleActions({
                     { sendData: "RDVR\r", recieveDatas: [] },
                     { sendData: "RSTM\r", recieveDatas: [] },
                     { sendData: "RWTM\r", recieveDatas: [] },
+                    { sendData: "TXDT 00000000\r", recieveDatas: [] },
                 ],
             },
         }
@@ -427,6 +428,13 @@ export default handleActions({
     //
     //============================================================
     [actions.im920.mist.recieve]: (oldState, { payload: { mist, led, music } }) => {
+        if (oldState.im920.mist.mist === mist) {
+            if (oldState.im920.mist.led === led) {
+                if (oldState.im920.mist.music === music) {
+                    return oldState;
+                }
+            }
+        }
         return {
             ...oldState,
             im920: {

@@ -2,7 +2,6 @@ import React from 'react';
 import { makeStyles } from '@mui/styles';
 import { useSelector } from 'react-redux'
 
-import MistSettingDrawer from '../components/Mist/SettingDrawer';
 import IM920SettingDrawer from '../components/IM920/SettingDrawer';
 import IM920ConnectButton from '../components/IM920/ConnectButton';
 import IM920ConnectDialog from '../components/IM920/Connect';
@@ -74,7 +73,6 @@ const Diagram = () => {
                 <Tree
                   src={solarImg}
                   name={recieveId}
-                  actionButtons={wiredConnectFlag ? <MistSettingDrawer /> : null}
                   connectFlag={false}
                 />
               )

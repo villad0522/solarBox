@@ -60,8 +60,12 @@ const ColabSample = () => {
                     onChange={(event) => setMusic(event.target.value)}
                 >
                     <FormControlLabel control={<Radio />} value="0" label="常時OFF" />
-                    <FormControlLabel control={<Radio />} value="1" label="常時ON" />
-                    <FormControlLabel control={<Radio />} value="2" label="人がいるときだけON" />
+                    <FormControlLabel control={<Radio />} value="1" label="常時「ゆりかごの唄」" />
+                    <FormControlLabel control={<Radio />} value="2" label="常時「ブラームスの子守唄」" />
+                    <FormControlLabel control={<Radio />} value="3" label="常時「ロッカバイ ベィビィ」" />
+                    <FormControlLabel control={<Radio />} value="4" label="人が来たら「ゆりかごの唄」" />
+                    <FormControlLabel control={<Radio />} value="5" label="人が来たら「ブラームスの子守唄」" />
+                    <FormControlLabel control={<Radio />} value="6" label="人が来たら「ロッカバイ ベィビィ」" />
                 </RadioGroup>
                 <Box padding={3} />
                 <Button
