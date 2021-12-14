@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.js": "/solarBox/static/js/main.e04f3f6f.chunk.js",
-    "main.js.map": "/solarBox/static/js/main.e04f3f6f.chunk.js.map",
+    "main.js": "/solarBox/static/js/main.7ff51f3d.chunk.js",
+    "main.js.map": "/solarBox/static/js/main.7ff51f3d.chunk.js.map",
     "react-syntax-highlighter_languages_refractor_abap.js": "/solarBox/static/js/react-syntax-highlighter_languages_refractor_abap.e88c84c6.chunk.js",
     "react-syntax-highlighter_languages_refractor_abap.js.map": "/solarBox/static/js/react-syntax-highlighter_languages_refractor_abap.e88c84c6.chunk.js.map",
     "react-syntax-highlighter_languages_refractor_actionscript.js": "/solarBox/static/js/react-syntax-highlighter_languages_refractor_actionscript.e00c3aa4.chunk.js",
@@ -306,14 +306,14 @@
     "react-syntax-highlighter_languages_refractor_yaml.js.map": "/solarBox/static/js/react-syntax-highlighter_languages_refractor_yaml.93d16cf1.chunk.js.map",
     "runtime-main.js": "/solarBox/static/js/runtime-main.dfcd0c83.js",
     "runtime-main.js.map": "/solarBox/static/js/runtime-main.dfcd0c83.js.map",
-    "static/js/153.296f81ad.chunk.js": "/solarBox/static/js/153.296f81ad.chunk.js",
-    "static/js/153.296f81ad.chunk.js.map": "/solarBox/static/js/153.296f81ad.chunk.js.map",
+    "static/js/153.05d93852.chunk.js": "/solarBox/static/js/153.05d93852.chunk.js",
+    "static/js/153.05d93852.chunk.js.map": "/solarBox/static/js/153.05d93852.chunk.js.map",
     "static/js/154.a62e13fd.chunk.js": "/solarBox/static/js/154.a62e13fd.chunk.js",
     "static/js/154.a62e13fd.chunk.js.map": "/solarBox/static/js/154.a62e13fd.chunk.js.map",
     "static/js/155.1b6a853e.chunk.js": "/solarBox/static/js/155.1b6a853e.chunk.js",
     "static/js/155.1b6a853e.chunk.js.map": "/solarBox/static/js/155.1b6a853e.chunk.js.map",
     "index.html": "/solarBox/index.html",
-    "static/js/153.296f81ad.chunk.js.LICENSE.txt": "/solarBox/static/js/153.296f81ad.chunk.js.LICENSE.txt",
+    "static/js/153.05d93852.chunk.js.LICENSE.txt": "/solarBox/static/js/153.05d93852.chunk.js.LICENSE.txt",
     "static/media/data.23b8029d.jpg": "/solarBox/static/media/data.23b8029d.jpg",
     "static/media/heating.5817718e.jpg": "/solarBox/static/media/heating.5817718e.jpg",
     "static/media/off.cde51f29.jpg": "/solarBox/static/media/off.cde51f29.jpg",
@@ -327,7 +327,7 @@
   },
   "entrypoints": [
     "static/js/runtime-main.dfcd0c83.js",
-    "static/js/153.296f81ad.chunk.js",
-    "static/js/main.e04f3f6f.chunk.js"
+    "static/js/153.05d93852.chunk.js",
+    "static/js/main.7ff51f3d.chunk.js"
   ]
 }
