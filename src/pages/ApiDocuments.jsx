@@ -13,7 +13,6 @@ import { CopyBlock, a11yDark } from "react-code-blocks";
 
 const useStyles = makeStyles((theme) => ({
     wrapper: {
-        overflowY: 'scroll',
         width: '100%',
     },
     table: {

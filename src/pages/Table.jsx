@@ -1,47 +1,24 @@
 import React from 'react';
-import { makeStyles } from '@mui/styles';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
-import Paper from '@mui/material/Paper';
+import Skeleton from '@mui/material/Skeleton';
 
 import DownloadButton from '../components/DownloadButton';
 
-const useStyles = makeStyles({
-    tableContainer: {
-        overflowX: 'scroll',
-    },
-    table: {
-        minWidth: 'max-content',
-    },
-    tableHead: {
-        background: '#eee',
-        position: 'sticky',
-        top: 0,
-    },
-});
-
 export default function BasicTable() {
-    const classes = useStyles();
     const iotDatas = useSelector(state => state?.iotDatas);
-    const dispatch = useDispatch();
     return (
-        <TableContainer className={classes.tableContainer} component={Paper}>
-            <Table className={classes.table} aria-label="simple table">
-                <TableHead className={classes.tableHead}>
+        <>
+            <Table sx={{ overflow: 'visible', minWidth: 'max-content', position: 'relative', }}>
+                <TableHead sx={{ background: '#eee', position: 'sticky', top: '48px', zIndex: '10', }}>
                     <TableRow>
                         <TableCell align="right">日時</TableCell>
                         <TableCell align="right">製品名</TableCell>
                         <TableCell align="right">通信方式</TableCell>
-                        <TableCell align="right">設置場所名</TableCell>
-                        <TableCell align="right">緯度</TableCell>
-                        <TableCell align="right">経度</TableCell>
-                        <TableCell align="right">方角</TableCell>
-                        <TableCell align="right">傾斜角度</TableCell>
                         <TableCell align="right">ソーラー電圧 [V]</TableCell>
                         <TableCell align="right">ソーラー電流 [mA]</TableCell>
                         <TableCell align="right">ソーラー電力 [mW]</TableCell>
@@ -56,15 +33,60 @@ export default function BasicTable() {
                 </TableHead>
                 <TableBody>
                     {
-                        iotDatas.slice(0,).map((data) => <MyRow key={data.id} data={data} />)
+                        (iotDatas.length > 0) ?
+                            iotDatas.slice(0,).map((data) => <MyRow key={data.id} data={data} />)
+                            :
+                            [
+                                <MyLoadingRow key="load0" />,
+                                <MyLoadingRow key="load1" />,
+                                <MyLoadingRow key="load2" />,
+                                <MyLoadingRow key="load3" />,
+                                <MyLoadingRow key="load4" />,
+                                <MyLoadingRow key="load5" />,
+                                <MyLoadingRow key="load6" />,
+                                <MyLoadingRow key="load7" />,
+                                <MyLoadingRow key="load8" />,
+                                <MyLoadingRow key="load9" />,
+                                <MyLoadingRow key="load10" />,
+                                <MyLoadingRow key="load11" />,
+                                <MyLoadingRow key="load12" />,
+                                <MyLoadingRow key="load13" />,
+                                <MyLoadingRow key="load14" />,
+                                <MyLoadingRow key="load15" />,
+                                <MyLoadingRow key="load16" />,
+                                <MyLoadingRow key="load17" />,
+                                <MyLoadingRow key="load18" />,
+                                <MyLoadingRow key="load19" />,
+                            ]
                     }
                 </TableBody>
             </Table>
             <DownloadButton />
-        </TableContainer>
+        </>
     );
 }
 
+
+const MyLoadingRow = ({ key }) => {
+    return (
+        <TableRow key={key}>
+            <TableCell>< Skeleton animation="wave" /></TableCell>
+            <TableCell>< Skeleton animation="wave" /></TableCell>
+            <TableCell>< Skeleton animation="wave" /></TableCell>
+            <TableCell>< Skeleton animation="wave" /></TableCell>
+            <TableCell>< Skeleton animation="wave" /></TableCell>
+            <TableCell>< Skeleton animation="wave" /></TableCell>
+            <TableCell>< Skeleton animation="wave" /></TableCell>
+            <TableCell>< Skeleton animation="wave" /></TableCell>
+            <TableCell>< Skeleton animation="wave" /></TableCell>
+            <TableCell>< Skeleton animation="wave" /></TableCell>
+            <TableCell>< Skeleton animation="wave" /></TableCell>
+            <TableCell>< Skeleton animation="wave" /></TableCell>
+            <TableCell>< Skeleton animation="wave" /></TableCell>
+        </TableRow>
+    );
+
+}
 
 const MyRow = ({ data }) => {
     let dateString = data?.year;
@@ -85,11 +107,6 @@ const MyRow = ({ data }) => {
             <TableCell align="right">{dateString}</TableCell>
             <TableCell align="right">{data?.name}</TableCell>
             <TableCell align="right">{data?.type}</TableCell>
-            <TableCell align="right">{data?.location?.name}</TableCell>
-            <TableCell align="right">{data?.location?.latitude?.toFixed(3)}</TableCell>
-            <TableCell align="right">{data?.location?.longitude?.toFixed(3)}</TableCell>
-            <TableCell align="right">{data?.location?.direction}</TableCell>
-            <TableCell align="right">{data?.location?.tilt}</TableCell>
             <TableCell align="right">{data?.solar?.voltage?.toFixed(1)}</TableCell>
             <TableCell align="right">{data?.solar?.current?.toFixed(1)}</TableCell>
             <TableCell align="right">{data?.solar?.power?.toFixed(1)}</TableCell>

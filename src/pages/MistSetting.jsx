@@ -13,7 +13,6 @@ import actions from '../actions';
 
 const useStyles = makeStyles((theme) => ({
     wrapper: {
-        overflowY: 'scroll',
         width: '100%',
     },
 }));
@@ -27,7 +26,15 @@ const ColabSample = () => {
     return (
         <div className={classes.wrapper}>
             <Container>
-                <Box padding={3} />
+                <Button
+                    onClick={() => dispatch(actions.im920.mist.send(mist, led, music))}
+                    variant="contained"
+                    color="primary"
+                    sx={{ position: "sticky", top: "78px", zIndex: "10" }}
+                >
+                    保存
+                </Button>
+                <Box padding={5} />
                 <Typography variant="h6">
                     ミスト
                 </Typography>
@@ -68,13 +75,6 @@ const ColabSample = () => {
                     <FormControlLabel control={<Radio />} value="6" label="人が来たら「ロッカバイ ベィビィ」" />
                 </RadioGroup>
                 <Box padding={3} />
-                <Button
-                    onClick={() => dispatch(actions.im920.mist.send(mist, led, music))}
-                    variant="contained"
-                    color="primary"
-                >
-                    OK
-                </Button>
             </Container>
         </div>
     );

@@ -1,13 +1,11 @@
 
 import {
-    delay,
     put,
 } from 'redux-saga/effects';
 import axios from 'axios';
 import actions from '../actions';
 
 export default function* mistSendFn({ payload: { mist, led, music } }) {
-    console.log(mist);
     try {
         const res = yield axios.post(
             "https://tec-log2.azurewebsites.net/api/postMist?code=JbDBeBLzW9A9uoQmtCgpdYJmIiFgVP5qTlfWAfrBJXXBswb7k4F7Yw==",

@@ -18,11 +18,6 @@ import internetImg from '../img/internet.png'
 
 const useStyles = makeStyles((theme) => ({
   wrapper: {
-    overflowX: 'scroll',
-    overflowY: 'visible',
-    boxSizing: 'border-box',
-    height: '100vh',
-    width: '100%',
     padding: '0 30px 0 30px',
   },
 }));

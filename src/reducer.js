@@ -391,7 +391,7 @@ export default handleActions({
     [actions.im920.wired.continueTxdt]: (oldState) => {
         const nowTime = new Date().getTime();
         const diffTime = nowTime - oldState.im920.mist.changeTime;
-        if (diffTime > 6000) {
+        if (diffTime > 120000) {
             return {
                 ...oldState,
                 serialCommand: {
